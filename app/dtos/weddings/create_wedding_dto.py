@@ -1,8 +1,9 @@
 from dataclasses import dataclass
 
-from pydantic import Field
+from pydantic import Field, field_validator
 
 from app.utils.constants import NAME_MIN_LEN, NAME_MAX_LEN, SURNAME_MIN_LEN, SURNAME_MAX_LEN
+from app.utils.validators import person_name_validation, person_surname_validation
 
 
 @dataclass
@@ -32,12 +33,22 @@ class CreateWeddingDto:
         max_length=SURNAME_MAX_LEN
     )
 
-    # @field_validator('m_name', 'f_name')
-    # @classmethod
-    # def person_name_validation(cls, name: str) -> str:
-    #     return person_name_validation(name)
-    #
-    # @field_validator('m_surname', 'f_surname')
-    # @classmethod
-    # def person_surname_validation(cls, name: str) -> str:
-    #     return person_surname_validation(name)
+    @field_validator('m_name')
+    @classmethod
+    def person_name_validation(cls, name: str) -> str:
+        return person_name_validation(name)
+
+    @field_validator('f_name')
+    @classmethod
+    def person_name_validation(cls, name: str) -> str:
+        return person_name_validation(name)
+
+    @field_validator('m_surname')
+    @classmethod
+    def person_surname_validation(cls, surname: str) -> str:
+        return person_surname_validation(surname)
+
+    @field_validator('f_surname')
+    @classmethod
+    def person_surname_validation(cls, surname: str) -> str:
+        return person_surname_validation(surname)

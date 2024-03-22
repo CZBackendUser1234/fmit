@@ -14,6 +14,7 @@ def person_name_validation(name: str):
         raise ValueError("Person name shouldn't have digits.")
     if not re.match("^[\u0400-\u04FF]*$", name):
         raise ValueError("Person name should have valid characters.")
+    return name
 
 
 def person_surname_validation(surname: str):
@@ -25,4 +26,4 @@ def person_surname_validation(surname: str):
         raise ValueError("Person surname shouldn't have digits.")
     if not re.match("^[\u0400-\u04FF]*$", surname):
         raise ValueError("Person surname should have valid characters.")
-
+    return surname
