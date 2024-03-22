@@ -3,6 +3,7 @@ from uuid import UUID
 from app.dtos.weddings.accept_wedding_dto import AcceptWeddingDto
 from app.dtos.weddings.create_wedding_dto import CreateWeddingDto
 from app.dtos.weddings.decline_wedding_dto import DeclineWeddingDto
+from app.dtos.weddings.pending_wedding_dto import PendingWeddingDto
 from app.dtos.weddings.wedding_status import WeddingStatus
 from app.models.schemas import Wedding
 
@@ -40,7 +41,7 @@ class WeddingService:
             wedding_by_id = await Wedding.find_one(Wedding.id == UUID(wedding_id))
 
             if wedding_by_id.status == WeddingStatus.PENDING:
-                return None
+                return PendingWeddingDto()
             elif wedding_by_id.status == WeddingStatus.ACCEPTED:
                 return AcceptWeddingDto(
                     m_name=wedding_by_id.m_name,
