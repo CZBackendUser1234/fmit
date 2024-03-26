@@ -1,6 +1,5 @@
 from dataclasses import dataclass
 from uuid import UUID
-from pydantic import Field
 
 from app.dtos.weddings.wedding_status import WeddingStatus
 
@@ -12,4 +11,4 @@ class AcceptWeddingDto:
     f_name: str
     f_surname: str
     digital_signature: UUID
-    status: WeddingStatus = Field(default=WeddingStatus.ACCEPTED)
+    status: WeddingStatus

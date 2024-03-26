@@ -41,7 +41,9 @@ class WeddingService:
             wedding_by_id = await Wedding.find_one(Wedding.id == UUID(wedding_id))
 
             if wedding_by_id.status == WeddingStatus.PENDING:
-                return PendingWeddingDto()
+                return PendingWeddingDto(
+                    status=WeddingStatus.PENDING
+                )
             elif wedding_by_id.status == WeddingStatus.ACCEPTED:
                 return AcceptWeddingDto(
                     m_name=wedding_by_id.m_name,
@@ -49,10 +51,12 @@ class WeddingService:
                     f_name=wedding_by_id.f_name,
                     f_surname=wedding_by_id.f_surname,
                     digital_signature=wedding_by_id.digital_signature,
+                    status=WeddingStatus.ACCEPTED
                 )
             elif wedding_by_id.status == WeddingStatus.DECLINED:
                 return DeclineWeddingDto(
-                    decline_message=wedding_by_id.decline_message
+                    decline_message=wedding_by_id.decline_message,
+                    status=WeddingStatus.DECLINED
                 )
             else:
                 raise ValueError(f"Status: {wedding_by_id.status} does not supported!")
