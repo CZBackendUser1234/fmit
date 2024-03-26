@@ -35,20 +35,20 @@ class CreateWeddingDto:
 
     @field_validator('m_name')
     @classmethod
-    def person_name_validation(cls, name: str) -> str:
+    def person_m_name_validation(cls, name: str) -> str:
         return person_name_validation(name)
 
     @field_validator('f_name')
     @classmethod
-    def person_name_validation(cls, name: str) -> str:
+    def person_f_name_validation(cls, name: str) -> str:
         return person_name_validation(name)
 
     @field_validator('m_surname')
     @classmethod
-    def person_surname_validation(cls, surname: str) -> str:
+    def person_m_surname_validation(cls, surname: str) -> str:
         return person_surname_validation(surname)
 
     @field_validator('f_surname')
     @classmethod
-    def person_surname_validation(cls, surname: str) -> str:
+    def person_f_surname_validation(cls, surname: str) -> str:
         return person_surname_validation(surname)
