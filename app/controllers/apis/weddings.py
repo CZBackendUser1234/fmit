@@ -40,12 +40,12 @@ async def get_wedding_by_id(
                          f"Error msg: {str(e)}")
 
 
-@router.get(path="/weddings", description="Get all weddings.", response_model=list[Wedding])
-async def get_all_weddings(
-        wedding_service: WeddingService = Depends()
-):
-    try:
-        return await wedding_service.get_all_weddings()
-    except Exception as e:
-        raise ValueError(f"Error during getting all weddings. "
-                         f"Error msg: {str(e)}")
+# @router.get(path="/weddings", description="Get all weddings.", response_model=list[Wedding])
+# async def get_all_weddings(
+#         wedding_service: WeddingService = Depends()
+# ):
+#     try:
+#         return await wedding_service.get_all_weddings()
+#     except Exception as e:
+#         raise ValueError(f"Error during getting all weddings. "
+#                          f"Error msg: {str(e)}")
