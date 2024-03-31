@@ -16,6 +16,19 @@ class WeddingService:
             create_wedding_dto: CreateWeddingDto
     ):
         try:
+
+            wedding_by_params: Wedding = await Wedding.find_one(
+                {"$and": [
+                    {Wedding.m_name: create_wedding_dto.m_name},
+                    {Wedding.m_surname: create_wedding_dto.m_surname},
+                    {Wedding.f_name: create_wedding_dto.f_name},
+                    {Wedding.f_surname: create_wedding_dto.f_surname}
+                ]}
+            )
+
+            if wedding_by_params is not None:
+                return str(wedding_by_params.id)
+
             wedding: Wedding = Wedding(
                 m_name=create_wedding_dto.m_name,
                 m_surname=create_wedding_dto.m_surname,
